@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Jump Scare</title>
+  <link href="https://fonts.googleapis.com/css?family=Alegreya|Cormorant+SC|Creepster|Gravitas+One" rel="stylesheet">
+      <style>
+	  html {
+		  background: black;
+		  overflow: hidden;
+		}
+
+		.skull {
+		  background: url(https://s-media-cache-ak0.pinimg.com/236x/b1/8a/30/b18a30fff5579066ad989bed52fdd51a.jpg) center no-repeat;
+		  position: absolute;
+		  top: 0;
+		  bottom: 0;
+		  right: 0;
+		  left: 0;
+		  background-size: 350px Auto;
+		  z-index: 0;
+		}
+
+		.jump {
+		  background-size: 800px Auto;
+		}
+
+		.overlay {
+		  background: url(http://il6.picdn.net/shutterstock/videos/5219735/thumb/1.jpg?i10c) center no-repeat;
+		  position: fixed;
+		  width: 100%;
+		  height: 100%;
+		  z-index: 1000;
+		  opacity: .1;
+		  background-size: cover;
+		  top: 0;
+		  left: 0;
+		}
+
+		.hide {
+		  display: none;
+		}
+
+		.can-hide {
+		  opacity: .1;
+		}
+
+		.shake {
+		  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+		}
+
+		@keyframes shake {
+		  10%, 90% {
+			transform: translate3d(-12px, 0, 0);
+		  }
+		  
+		  20%, 80% {
+			transform: translate3d(13px, 0, 0);
+		  }
+
+		  30%, 50%, 70% {
+			transform: translate3d(-20px, 0, 0);
+		  }
+
+		  40%, 60% {
+			transform: translate3d(20px, 0, 0);
+		  }
+		}
+	  </style>
+	  <script>
+	//var audio = new Audio('http://soundbible.com/mp3/Female_Scream_Horror-NeoPhyTe-138499973.mp3');
+
+setTimeout(function() { boo(); }, 1000);
+setTimeout(function() { reset(); }, 2000);
+
+function boo() {
+  $('.can-hide').addClass("hide"); 
+  $('.skull').addClass("jump");
+  $('.skull').addClass("shake");
+  document.getElementById('alarm').play();
+  document.getElementById('alarm').muted = false;
+}
+
+function reset() {
+  $('.can-hide').removeClass("hide"); 
+  $('.skull').removeClass("jump"); 
+  $('.skull').removeClass("shake");
+  document.getElementById('alarm').muted = true;
+}
+	</script>
+</head>
+<body>
+	<audio id="alarm" src="http://soundbible.com/mp3/Female_Scream_Horror-NeoPhyTe-138499973.mp3" muted></audio>
+	<div class="skull"></div>
+	 <div class="overlay can-hide"></div> 
+	<button onclick="boo()">Boo</button>
+	<button onclick="reset()">Reset</button>
+	<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+    
+</body>
+</html>
